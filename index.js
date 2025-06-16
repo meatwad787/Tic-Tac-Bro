@@ -43,7 +43,7 @@ const computer = CreatePlayers('CPU1', 'O');
         TicTacToe.Play();
         return 'Marker set';
       }
-     else {console.log('STFU')
+     else {console.log('Can\'t place here!!')
       return 'Spot taken'
      }
     },
