@@ -35,6 +35,8 @@ const player1 = CreatePlayers('Meatwad', 'X');
 const computer = CreatePlayers('CPU1', 'O');
 
   const GameController = {
+    //sets the marker on the "cells" passed ass arguments
+    //calls Play() after every move
     setCell: function(row, col, marker) {
       if(Game.gameboard[row][col] === 0) {
         Game.gameboard[row][col] = marker;
@@ -45,6 +47,7 @@ const computer = CreatePlayers('CPU1', 'O');
       return 'Spot taken'
      }
     },
+    //Used to look inside a "cell"
     getCell: function(row, col) {
       return Game.gameboard[row][col];
     },
@@ -54,10 +57,7 @@ const computer = CreatePlayers('CPU1', 'O');
     }
   }
 
-// if (any array-numbers at index-numbers 
-//  === any one player.marker && meets game-end conditions {
-// do something }
- // Win conditions for player1
+//Check conditions for a winner or a tie
  function Play() {
   if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
   else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
@@ -93,7 +93,6 @@ const computer = CreatePlayers('CPU1', 'O');
   return ''
 }
 
-
 // Anything in this return becomes
 // accessable outside the IIFE (public)
   return {
@@ -105,6 +104,4 @@ const computer = CreatePlayers('CPU1', 'O');
     
   };
 }());
-
-
 TicTacToe.Play()
