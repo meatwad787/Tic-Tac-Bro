@@ -14,10 +14,30 @@ const Game = {
       }
       this.gameboard = arr; // store it inside Game object
       return arr;
+    },
+    getGameboard: function () {
+      return this.gameboard;
     }
   };
+// loops to display the same kind of 
+//matrix (like above) on the screen 
+const Display = {
+   render: function (board) {
+      const container = document.querySelector('#container');
+      container.innerHTML = ''; // clear previous
+      for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+          const square = document.createElement('div');
+          square.classList.add('square');
+          square.textContent = board[i][j]; // could be 0, 'X', or 'O'
+          container.appendChild(square);
+         }
+     }
+  }
+}
 
   Game.MakeArray(3, 3, 0);
+  Display.render(Game.getGameboard())
   console.log(Game.gameboard);
 
 // A factory function to create new players
@@ -101,7 +121,10 @@ const computer = CreatePlayers('CPU1', 'O');
     computer,
     GameController,
     Play,
+    Display
     
   };
 }());
+//Use this to run it again later
+// TicTacToe.Display.render(TicTacToe.Game.getGameboard())
 TicTacToe.Play()
