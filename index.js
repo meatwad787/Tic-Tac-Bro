@@ -28,6 +28,28 @@ const Display = {
       for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
           const square = document.createElement('div');
+          square.setAttribute('data-row', i);
+          square.setAttribute('data-col', j);
+          square.addEventListener('click', (e) => {
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+            TicTacToe.GameController.setCell(row, col, CurrentPlayer.marker);
+            switch (CurrentPlayer) {
+              case player1:
+                CurrentPlayer = player2;
+                break;
+
+              case player2:
+                CurrentPlayer = player1
+                break;
+
+              default: alert('skibidi this is an error')
+                break;
+              }
+
+            TicTacToe.Display.render(TicTacToe.Game.getGameboard()); // re-render board
+            TicTacToe.Play();
+          })
           square.classList.add('square');
           square.textContent = board[i][j]; // could be 0, 'X', or 'O'
           container.appendChild(square);
@@ -51,8 +73,11 @@ const Display = {
     }
   }
   
-const player1 = CreatePlayers('Meatwad', 'X');
-const computer = CreatePlayers('CPU1', 'O');
+  //Use Prompts to set player names 
+  //CurrentPlayer uses a switch to place each player marker
+const player1 = CreatePlayers(prompt('P1 Write your name'), prompt('Write Your Symbol'))
+const player2 = CreatePlayers(prompt('P2 Write your name'), prompt('Write Your Symbol'))
+let CurrentPlayer = player1;
 
   const GameController = {
     //sets the marker on the "cells" passed ass arguments
@@ -60,7 +85,7 @@ const computer = CreatePlayers('CPU1', 'O');
     setCell: function(row, col, marker) {
       if(Game.gameboard[row][col] === 0) {
         Game.gameboard[row][col] = marker;
-        TicTacToe.Play();
+        // TicTacToe.Play();
         return 'Marker set';
       }
      else {console.log('Can\'t place here!!')
@@ -79,27 +104,43 @@ const computer = CreatePlayers('CPU1', 'O');
 
 //Check conditions for a winner or a tie
  function Play() {
-  if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
-  else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
-  else if (TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
+  if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
 
-  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
-  else if (TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
-  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
 
-  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
-  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker) console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker) 
+    console.log(`${TicTacToe.player1.name} wins!`);
 
-  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
-  else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
-  else if (TicTacToe.Game.gameboard[2][0] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
+  else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
+  else if (TicTacToe.Game.gameboard[2][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
 
-  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][0] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
-  else if (TicTacToe.Game.gameboard[0][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
-  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player2.marker) 
+    onsole.log(`${TicTacToe.player2.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
 
-  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
-  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.computer.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.computer.marker) console.log(`${TicTacToe.computer.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
+  else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player2.marker) 
+    console.log(`${TicTacToe.player2.name} wins!`);
 
   else if (
     TicTacToe.Game.gameboard[0][0] !== 0 && TicTacToe.Game.gameboard[0][1] !== 0 && TicTacToe.Game.gameboard[0][2] !== 0 &&
@@ -118,13 +159,14 @@ const computer = CreatePlayers('CPU1', 'O');
   return {
     Game,
     player1, 
-    computer,
+    player2,
     GameController,
     Play,
-    Display
+    Display,
+    // CurrentPlayer
     
   };
 }());
 //Use this to run it again later
 // TicTacToe.Display.render(TicTacToe.Game.getGameboard())
-TicTacToe.Play()
+// TicTacToe.Play()
