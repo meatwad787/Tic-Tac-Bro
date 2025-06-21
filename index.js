@@ -31,6 +31,7 @@ const Display = {
           square.setAttribute('data-row', i);
           square.setAttribute('data-col', j);
           square.addEventListener('click', (e) => {
+            if (isGameOver) return;
             const row = parseInt(e.target.dataset.row);
             const col = parseInt(e.target.dataset.col);
             TicTacToe.GameController.setCell(row, col, CurrentPlayer.marker);
@@ -106,67 +107,68 @@ let CurrentPlayer = player1;
  function Play() {
   if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   }  
   else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   } 
   else if (TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   }
   else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   } 
   else if (TicTacToe.Game.gameboard[0][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   }
   else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   }
   else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   }  
   else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player1.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player1.marker) {
     console.log(`${TicTacToe.player1.name} wins!`);
-    return `${TicTacToe.player1.name} wins!`
+    gameOver(TicTacToe.player1)
   }
   else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[0][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[0][2] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+    gameOver(TicTacToe.player2)
   }  
   else if (TicTacToe.Game.gameboard[1][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+     gameOver(TicTacToe.player2)
   }  
   else if (TicTacToe.Game.gameboard[2][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+     gameOver(TicTacToe.player2)
   }
   else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+     gameOver(TicTacToe.player2)
   }  
   else if (TicTacToe.Game.gameboard[0][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][1] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+     gameOver(TicTacToe.player2)
   } 
   else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][2] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+     gameOver(TicTacToe.player2)
   }
   else if (TicTacToe.Game.gameboard[0][0] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][2] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+     gameOver(TicTacToe.player2)
   }
   else if (TicTacToe.Game.gameboard[0][2] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[1][1] === TicTacToe.player2.marker && TicTacToe.Game.gameboard[2][0] === TicTacToe.player2.marker) {
     console.log(`${TicTacToe.player2.name} wins!`);
-    return `${TicTacToe.player2.name} wins!`
+    gameOver(TicTacToe.player2)
+    
   } 
 
   else if (
@@ -175,12 +177,30 @@ let CurrentPlayer = player1;
     TicTacToe.Game.gameboard[2][0] !== 0 && TicTacToe.Game.gameboard[2][1] !== 0 && TicTacToe.Game.gameboard[2][2] !== 0
   ) {
     console.log("It's a tie!");
-    return 'It\'s a tie!'
+    gameOver('It\'s a Tie!')
   } else {
     console.log("Game is still in progress...");
   }
   return ''
-}
+};
+
+let isGameOver = false
+function gameOver(winner) {
+  // Optional: visually disable the board
+  document.querySelectorAll('.square').forEach(sq => sq.style.pointerEvents = 'none');
+
+  const Result = document.querySelector('#result');
+  if (winner === 'tie') {
+    console.log("It's a tie!");
+    Result.innerHTML = 'It\'s a Tie!!'
+  } else {
+    console.log(`${winner.name} wins!`);
+    Result.innerHTML = `GGs! ${winner.name} wins!`
+  }
+
+  isGameOver = true;
+};
+
 
 // Anything in this return becomes
 // accessable outside the IIFE (public)

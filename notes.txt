@@ -1,1 +1,2 @@
 Write a Game Over function and call it to end the game when someone wins
+Reset Button can just refresh the whole page
