@@ -195,7 +195,7 @@ function gameOver(winner) {
     Result.innerHTML = 'It\'s a Tie!!'
   } else {
     console.log(`${winner.name} wins!`);
-    Result.innerHTML = `GGs! ${winner.name} wins!`
+    Result.innerHTML = `${winner.name} wins!`
   }
 
   isGameOver = true;
