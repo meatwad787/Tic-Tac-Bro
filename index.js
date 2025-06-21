@@ -76,8 +76,8 @@ const Display = {
   
   //Use Prompts to set player names 
   //CurrentPlayer uses a switch to place each player marker
-const player1 = CreatePlayers(prompt('P1 Write your name'), '❌')
-const player2 = CreatePlayers(prompt('P2 Write your name'), '⭕')
+const player1 = CreatePlayers(prompt('Player 1 Write your name'), '❌')
+const player2 = CreatePlayers(prompt('Player 2 Write your name'), '⭕')
 let CurrentPlayer = player1;
 
   const GameController = {
@@ -177,7 +177,7 @@ let CurrentPlayer = player1;
     TicTacToe.Game.gameboard[2][0] !== 0 && TicTacToe.Game.gameboard[2][1] !== 0 && TicTacToe.Game.gameboard[2][2] !== 0
   ) {
     console.log("It's a tie!");
-    gameOver('It\'s a Tie!')
+    gameOver('tie')
   } else {
     console.log("Game is still in progress...");
   }
@@ -215,6 +215,8 @@ function gameOver(winner) {
     
   };
 }());
+const Reset = document.querySelector('#reset');
+Reset.addEventListener('click', () =>  window.location.reload())
 //Use this to run it again later
 // TicTacToe.Display.render(TicTacToe.Game.getGameboard())
 // TicTacToe.Play()
