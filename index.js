@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 // An IIFE to house the entire Game
 const TicTacToe = (function() {
 const Game = {
@@ -220,3 +221,4 @@ Reset.addEventListener('click', () =>  window.location.reload())
 //Use this to run it again later
 // TicTacToe.Display.render(TicTacToe.Game.getGameboard())
 // TicTacToe.Play()
+})
