@@ -77,10 +77,23 @@ const Display = {
   
   //Use Prompts to set player names 
   //CurrentPlayer uses a switch to place each player marker
-const player1 = CreatePlayers(prompt('Player 1 Write your name'), '❌')
-const player2 = CreatePlayers(prompt('Player 2 Write your name'), '⭕')
+let player1 = CreatePlayers(prompt('Player 1 Write your name'), '❌')
+let player2 = CreatePlayers(prompt('Player 2 Write your name'), '⭕')
 let CurrentPlayer = player1;
 
+//Thinking of using a loop to check names
+// while (player1.name || player2.name == '' || null) {
+//   alert('Just type something, Bro');
+//   player1 = CreatePlayers(prompt('Player 1 Write your name'), '❌')
+//   player2 = CreatePlayers(prompt('Player 2 Write your name'), '⭕')
+// }
+
+
+const P1 = document.querySelector('#p1');
+const P2 = document.querySelector('#p2');
+
+P1.textContent += ` ${player1.name}  ${player1.marker}`;
+P2.textContent += ` ${player2.name}  ${player2.marker}`;
   const GameController = {
     //sets the marker on the "cells" passed ass arguments
     //calls Play() after every move
