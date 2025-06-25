@@ -92,8 +92,8 @@ let CurrentPlayer = player1;
 const P1 = document.querySelector('#p1');
 const P2 = document.querySelector('#p2');
 
-P1.textContent += ` ${player1.name}  ${player1.marker}`;
-P2.textContent += ` ${player2.name}  ${player2.marker}`;
+P1.textContent += ` ${player1.name}${player1.marker}`;
+P2.textContent += ` ${player2.name}${player2.marker}`;
   const GameController = {
     //sets the marker on the "cells" passed ass arguments
     //calls Play() after every move
