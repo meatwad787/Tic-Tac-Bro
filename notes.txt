@@ -1,2 +1,5 @@
 Write a Game Over function and call it to end the game when someone wins
 Reset Button can just refresh the whole page
+
+Use the Prompt and While loop from Etch-a-Sketch for the player names
+it should take any string that isn't empty
